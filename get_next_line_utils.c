@@ -30,6 +30,7 @@ char	*ft_str_append(char *s1, char *s2)
 	while (s2[j])
 		s3[g++] = s2[j++];
 	s3[g] = '\0';
+	free(s2);
 	return (s3);
 }
 
@@ -50,14 +51,17 @@ char	*ft_strchr(const char *str, int c)
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*str;
+	char	*str;
 	size_t	i;
 
-	str = (void *)malloc(count * size);
+	str = malloc(count * size);
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (i++ < count)
-		*(unsigned char *)str++ = 0;
-	return (str);
+	while (i < count * size)
+	{
+		str[i] = 0;
+		i++;
+	}
+	return ((void *)str);
 }

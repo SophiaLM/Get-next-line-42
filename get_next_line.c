@@ -33,7 +33,7 @@ char	*ft_get_line(char *str_line)
 	i = 0;
 	while (str_line[i] != '\0' && str_line[i] != '\n')
 		i++;
-	line = ft_calloc((i + 1), sizeof(char));
+	line = ft_calloc(i + 1, sizeof(char));
 	if (!line)
 		return (NULL);
 	j = 0;
@@ -42,7 +42,6 @@ char	*ft_get_line(char *str_line)
 		line[j] = str_line[j];
 		j++;
 	}
-	line[j] = '\0';
 	return (line);
 }
 
@@ -83,7 +82,7 @@ char	*get_next_line(int fd)
 	buffer = ft_next(buffer);
 	return (line);
 }
-/*
+
 int	main()
 {
 	int	fd = open("texto.txt", O_RDONLY);
@@ -95,8 +94,9 @@ int	main()
 	while (i < 3)
 	{
 		result = get_next_line(fd);
-		printf("%s\n", result);
+		printf("%s", result);
+		free(result);
 		i++;
-	}	
+	}
 	return (0);
-}*/
+}
