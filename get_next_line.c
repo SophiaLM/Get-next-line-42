@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soluna <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/15 20:29:03 by soluna            #+#    #+#             */
+/*   Updated: 2024/10/15 20:34:04 by soluna           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_read_line(int fd, char *str_buff)
 {
 	char	*buffer;
-	int	bytes_read;
+	int		bytes_read;
 
 	if (!str_buff)
 		str_buff = ft_calloc(1, sizeof(char));
@@ -27,8 +39,8 @@ char	*ft_read_line(int fd, char *str_buff)
 char	*ft_get_line(char *str_line)
 {
 	char	*line;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (str_line[i] != '\0' && str_line[i] != '\n')
@@ -48,8 +60,8 @@ char	*ft_get_line(char *str_line)
 char	*ft_next(char *buffer)
 {
 	char	*extra;
-	int	j;
-	int	i;
+	int		j;
+	int		i;
 
 	i = 0;
 	while (buffer[i] != '\n' && buffer[i] != '\0')
@@ -82,7 +94,7 @@ char	*get_next_line(int fd)
 	buffer = ft_next(buffer);
 	return (line);
 }
-
+/*
 int	main()
 {
 	int	fd = open("texto.txt", O_RDONLY);
@@ -99,4 +111,4 @@ int	main()
 		i++;
 	}
 	return (0);
-}
+}*/

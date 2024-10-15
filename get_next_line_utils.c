@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soluna <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/15 20:30:20 by soluna            #+#    #+#             */
+/*   Updated: 2024/10/15 20:35:15 by soluna           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_strlen(char *str)
@@ -13,9 +25,9 @@ int	ft_strlen(char *str)
 char	*ft_str_append(char *s1, char *s2)
 {
 	char	*s3;
-	int	i;
-	int	j;
-	int	g;
+	int		i;
+	int		j;
+	int		g;
 
 	if (!s1 || !s2)
 		return (NULL);
