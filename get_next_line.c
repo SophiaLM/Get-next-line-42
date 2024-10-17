@@ -47,11 +47,11 @@ char	*ft_get_line(char *str_line)
 	i = 0;
 	while (str_line[i] != '\0' && str_line[i] != '\n')
 		i++;
-	line = ft_calloc(i + 1, sizeof(char));
+	line = ft_calloc(i + 2, sizeof(char));
 	if (!line)
 		return (NULL);
 	j = 0;
-	while (j < i)
+	while (j < i + 1)
 	{
 		line[j] = str_line[j];
 		j++;
@@ -62,8 +62,8 @@ char	*ft_get_line(char *str_line)
 char	*ft_next(char *buffer)
 {
 	char	*extra;
-	int	j;
-	int	i;
+	int		j;
+	int		i;
 
 	i = 0;
 	while (buffer[i] != '\n' && buffer[i] != '\0')
@@ -100,7 +100,7 @@ char	*get_next_line(int fd)
 	buffer = ft_next(buffer);
 	return (line);
 }
-
+/*
 int	main()
 {
 	int	fd = open("only_nl.txt", O_RDONLY);
@@ -109,7 +109,7 @@ int	main()
 
 //	printf("%s", result);
 	i = 0;
-	while (i < 3)
+	while (i < 2)
 	{
 		result = get_next_line(fd);
 		printf("'%s'\n", result);
@@ -117,4 +117,4 @@ int	main()
 		i++;
 	}
 	return (0);
-}
+}*/
