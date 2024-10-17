@@ -29,8 +29,10 @@ char	*ft_str_append(char *s1, char *s2)
 	int		j;
 	int		g;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
+	if (!s1)
+		return (s2);
 	s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!s3)
 		return (NULL);
@@ -42,6 +44,7 @@ char	*ft_str_append(char *s1, char *s2)
 	while (s2[j])
 		s3[g++] = s2[j++];
 	s3[g] = '\0';
+	free(s1);
 	free(s2);
 	return (s3);
 }

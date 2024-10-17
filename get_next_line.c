@@ -17,19 +17,21 @@ char	*ft_read_line(int fd, char *str_buff)
 	char	*buffer;
 	int		bytes_read;
 
-	if (!str_buff)
-		str_buff = ft_calloc(1, sizeof(char));
 	bytes_read = BUFFER_SIZE;
-	while (bytes_read == BUFFER_SIZE && !ft_strchr(str_buff, '\n'))
+	while (bytes_read > 0 && !ft_strchr(str_buff, '\n'))
 	{
 		buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		if (!buffer)
+			return (NULL);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read <= -1)
+			return (free(buffer), free(str_buff), NULL);
 		if (bytes_read == 0)
 		{
 			if (str_buff)
-				return (str_buff);
+				return (free(buffer), str_buff);
 			else
-				return (NULL);
+				return (free(buffer), NULL);
 		}
 		str_buff = ft_str_append(str_buff, buffer);
 	}
@@ -60,8 +62,8 @@ char	*ft_get_line(char *str_line)
 char	*ft_next(char *buffer)
 {
 	char	*extra;
-	int		j;
-	int		i;
+	int	j;
+	int	i;
 
 	i = 0;
 	while (buffer[i] != '\n' && buffer[i] != '\0')
@@ -72,7 +74,11 @@ char	*ft_next(char *buffer)
 		return (NULL);
 	}
 	i++;
+	if (ft_strlen(buffer) == i)
+		return (free(buffer), NULL);
 	extra = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	if (!extra)
+		return (NULL);
 	j = 0;
 	while (buffer[i])
 		extra[j++] = buffer[i++];
@@ -94,10 +100,10 @@ char	*get_next_line(int fd)
 	buffer = ft_next(buffer);
 	return (line);
 }
-/*
+
 int	main()
 {
-	int	fd = open("texto.txt", O_RDONLY);
+	int	fd = open("only_nl.txt", O_RDONLY);
 	char	*result;
 	int	i;
 
@@ -106,9 +112,9 @@ int	main()
 	while (i < 3)
 	{
 		result = get_next_line(fd);
-		printf("%s", result);
+		printf("'%s'\n", result);
 		free(result);
 		i++;
 	}
 	return (0);
-}*/
+}
